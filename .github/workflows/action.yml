@@ -50,8 +50,15 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/flask-app:${{ github.sha }}
           docker push ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
 
-        - name: CONTAINER LIST
+          - name: Run Container
+            run: |
+              docker run -d --name flask-Container ${{secrets.DOCKER_USERNAME}}/flask-app:latest
+
+
+       
+
+        - name: Container List
           run: docker ps
 
-        - name: Images lists
+        - name: Images List
           run: docker images 
